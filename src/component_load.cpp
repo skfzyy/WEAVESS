@@ -78,28 +78,28 @@ namespace weavess {
         assert(index->getBaseData() != nullptr && index->getBaseLen() != 0 && index->getBaseDim() != 0);
 
         // query_data
-        float *query_data = nullptr;
-        unsigned query_num{};
-        unsigned query_dim{};
-        load_data<float>(query_file, query_data, query_num, query_dim);
-        index->setQueryData(query_data);
-        index->setQueryLen(query_num);
-        index->setQueryDim(query_dim);
+        // float *query_data = nullptr;
+        // unsigned query_num{};
+        // unsigned query_dim{};
+        // load_data<float>(query_file, query_data, query_num, query_dim);
+        // index->setQueryData(query_data);
+        // index->setQueryLen(query_num);
+        // index->setQueryDim(query_dim);
 
-        assert(index->getQueryData() != nullptr && index->getQueryLen() != 0 && index->getQueryDim() != 0);
-        assert(index->getBaseDim() == index->getQueryDim());
+        // assert(index->getQueryData() != nullptr && index->getQueryLen() != 0 && index->getQueryDim() != 0);
+        // assert(index->getBaseDim() == index->getQueryDim());
 
-        // ground_data
-        unsigned *ground_data = nullptr;
-        unsigned ground_num{};
-        unsigned ground_dim{};
-        load_data<unsigned>(ground_file, ground_data, ground_num, ground_dim);
-        index->setGroundData(ground_data);
-        index->setGroundLen(ground_num);
-        index->setGroundDim(ground_dim);
+        // // ground_data
+        // unsigned *ground_data = nullptr;
+        // unsigned ground_num{};
+        // unsigned ground_dim{};
+        // load_data<unsigned>(ground_file, ground_data, ground_num, ground_dim);
+        // index->setGroundData(ground_data);
+        // index->setGroundLen(ground_num);
+        // index->setGroundDim(ground_dim);
 
-        assert(index->getGroundData() != nullptr && index->getGroundLen() != 0 && index->getGroundDim() != 0);
+        // assert(index->getGroundData() != nullptr && index->getGroundLen() != 0 && index->getGroundDim() != 0);
 
-        index->setParam(parameters);
+        // index->setParam(parameters);
     }
 }

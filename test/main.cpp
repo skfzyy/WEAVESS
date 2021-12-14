@@ -32,23 +32,26 @@ void FANNG(weavess::Parameters &parameters) {
 
     const unsigned num_threads = parameters.get<unsigned>("n_threads");
     std::string base_path = parameters.get<std::string>("base_path");
-    std::string query_path = parameters.get<std::string>("query_path");
-    std::string ground_path = parameters.get<std::string>("ground_path");
+    std::string query_path = "";
+    std::string ground_path = "";
     std::string graph_file = parameters.get<std::string>("graph_file");
+    parameters.set("L",70);
+    parameters.set("K",60);
     auto *builder = new weavess::IndexBuilder(num_threads);
     
     // build
+    std::cout<<base_path<<std::endl;
     builder -> load(&base_path[0], &query_path[0], &ground_path[0], parameters)
             -> init(weavess::TYPE::INIT_FANNG);
     std::cout << "Init cost: " << builder->GetBuildTime().count() << std::endl;
     builder -> refine(weavess::TYPE::REFINE_FANNG, false)
             -> save_graph(weavess::TYPE::INDEX_FANNG, &graph_file[0]);
-    std::cout << "Build cost: " << builder->GetBuildTime().count() << std::endl;
+//     std::cout << "Build cost: " << builder->GetBuildTime().count() << std::endl;
 
-    // seach
-    builder -> load(&base_path[0], &query_path[0], &ground_path[0], parameters)
-            -> load_graph(weavess::TYPE::INDEX_FANNG, &graph_file[0])
-            -> search(weavess::TYPE::SEARCH_ENTRY_RAND, weavess::TYPE::ROUTER_BACKTRACK, true);
+//     // seach
+//     builder -> load(&base_path[0], &query_path[0], &ground_path[0], parameters)
+//             -> load_graph(weavess::TYPE::INDEX_FANNG, &graph_file[0])
+//             -> search(weavess::TYPE::SEARCH_ENTRY_RAND, weavess::TYPE::ROUTER_BACKTRACK, true);
 
 }
 
@@ -312,32 +315,44 @@ void SPTAG_BKT(std::string base_path, std::string query_path, std::string ground
 
 int main(int argc, char** argv) {
     weavess::Parameters parameters;
-    std::string dataset_root = R"(/Users/wmz/Documents/Postgraduate/Code/dataset/)";
-    parameters.set<std::string>("dataset_root", dataset_root);
+//     std::string dataset_root = R"(/Users/wmz/Documents/Postgraduate/Code/dataset/)";
+//     parameters.set<std::string>("dataset_root", dataset_root);
+//     parameters.set<unsigned>("n_threads", 8);
+//     std::string alg(argv[1]);
+//     std::string dataset(argv[2]);
+//     std::cout << "algorithm: " << alg << std::endl;
+//     std::cout << "dataset: " << dataset << std::endl;
+//     std::string graph_file(alg + "_" + dataset + ".graph");
+//     parameters.set<std::string>("graph_file", graph_file);
+//     set_para(alg, dataset, parameters);
+
+//     std::string dataset_root=std::string("(")+argv[1]+std::string(")");
+    parameters.set<std::string>("dataset_root", "");
     parameters.set<unsigned>("n_threads", 8);
-    std::string alg(argv[1]);
-    std::string dataset(argv[2]);
-    std::cout << "algorithm: " << alg << std::endl;
-    std::cout << "dataset: " << dataset << std::endl;
-    std::string graph_file(alg + "_" + dataset + ".graph");
+//     std::string alg(argv[2]);
+//     std::string dataset(argv[3]);
+    std::string graph_file(std::string(argv[1])+"_fanng");
+    //?
     parameters.set<std::string>("graph_file", graph_file);
-    set_para(alg, dataset, parameters);
+    parameters.set<std::string>("base_path",argv[1]);
+    FANNG(parameters);
+//     parameters.set<std::string>("")
+//     set_para(alg, dataset, parameters);
 
-    // alg
-    if (alg == "kgraph") {
-        KGraph(parameters);
-    }else if (alg == "fanng") {
-        FANNG(parameters);
-    }else if (alg == "nsg") {
-        NSG(parameters);
-    }else if (alg == "ssg") {
-        SSG(parameters);
-    }else if (alg == "dpg") {
-        DPG(parameters);
-    }else {
-        std::cout << "alg input error!\n";
-        exit(-1);
-    }
-
+//     // alg
+//     if (alg == "kgraph") {
+//         KGraph(parameters);
+//     }else if (alg == "fanng") {
+//         FANNG(parameters);
+//     }else if (alg == "nsg") {
+//         NSG(parameters);
+//     }else if (alg == "ssg") {
+//         SSG(parameters);
+//     }else if (alg == "dpg") {
+//         DPG(parameters);
+//     }else {
+//         std::cout << "alg input error!\n";
+//         exit(-1);
+//     }
     return 0;
 }

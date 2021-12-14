@@ -19,10 +19,10 @@ endif()
 
 #Boost
 # windows
-set(BOOST_ROOT G:/MinGW-w64/boost_1_73_0)
+# set(BOOST_ROOT G:/MinGW-w64/boost_1_73_0)
 # macOS
 #set(BOOST_ROOT /usr/local/Cellar/boost/1.74.0/)
-find_package(BOOST)
+find_package(Boost REQUIRED)
 if(Boost_FOUND)
     #message(Boost_INCLUDE_DIRS "${Boost_INCLUDE_DIRS}")
     #message(Boost_LIBRARY_DIRS "${Boost_LIBRARY_DIRS}")

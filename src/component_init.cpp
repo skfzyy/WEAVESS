@@ -5,6 +5,7 @@
 #include "weavess/component.h"
 #include <functional>
 
+#define THREADS_NUM 8
 
 namespace weavess {
 
@@ -129,10 +130,11 @@ namespace weavess {
 
     // FANNG
     void ComponentInitFANNG::InitInner() {
+        std::cout<<"1"<<std::endl;
         SetConfigs();
-
+        std::cout<<"1"<<std::endl;
         init();
-
+        std::cout<<"1"<<std::endl;
         // graph_ -> final_graph
         index->getFinalGraph().resize(index->getBaseLen());
 #ifdef PARALLEL
@@ -163,7 +165,8 @@ namespace weavess {
     }
 
     void ComponentInitFANNG::SetConfigs() {
-        index->L = index->getParam().get<unsigned>("L");
+        // index->L = index->getParam().get<unsigned>("L");
+        index->L=70;
     }
 
     void ComponentInitFANNG::init() {

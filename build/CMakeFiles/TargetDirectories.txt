@@ -1,0 +1,9 @@
+/root/project/weavess/build/CMakeFiles/rebuild_cache.dir
+/root/project/weavess/build/CMakeFiles/edit_cache.dir
+/root/project/weavess/build/src/CMakeFiles/rebuild_cache.dir
+/root/project/weavess/build/src/CMakeFiles/WEAVESS_s.dir
+/root/project/weavess/build/src/CMakeFiles/edit_cache.dir
+/root/project/weavess/build/src/CMakeFiles/WEAVESS.dir
+/root/project/weavess/build/test/CMakeFiles/rebuild_cache.dir
+/root/project/weavess/build/test/CMakeFiles/edit_cache.dir
+/root/project/weavess/build/test/CMakeFiles/main.dir

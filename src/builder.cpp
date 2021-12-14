@@ -95,6 +95,7 @@ namespace weavess {
 
         a->InitInner();
 
+        std::cout<<"has call a init"<<std::endl;
         if(debug) {
             //print_graph();
             std::unordered_map<unsigned, unsigned> in_degree;
@@ -539,6 +540,15 @@ namespace weavess {
             out.write((char *)&n_ep, sizeof(unsigned));
             out.write((char *)final_index_->eps_.data(), n_ep*sizeof(unsigned));
         }
+
+        if(type==INDEX_FANNG){
+            //为了统一搜索的处理，这里增加两个值用以进行搜索
+            unsigned _ep=0;
+            out.write((char*)&_ep,sizeof(unsigned));
+            //for filled with width
+            out.write((char*)&_ep,sizeof(unsigned));
+        }
+
         for (unsigned i = 0; i < final_index_->getBaseLen(); i++) {
             unsigned GK = (unsigned) final_index_->getFinalGraph()[i].size();
             std::vector<unsigned> tmp;
